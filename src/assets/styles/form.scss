@@ -1,0 +1,20 @@
+fieldset{
+    padding:.5rem 0;
+}
+
+label{
+    display: block;
+}
+
+form{
+    margin-top: 2rem;
+    min-width: 300px;
+}
+
+button{
+    padding: .75rem 1rem;
+    border-radius: 1rem;
+    border: none;
+    margin: .5rem;
+    cursor: pointer;
+}
