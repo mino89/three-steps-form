@@ -27,12 +27,12 @@ yarn lint
 ```
 ## Valid Values
 
-Options
+Available Options
 ```
 {
   size: ['M', 'L', 'XXL'],
   color: ['red', 'yellow', 'green'],
-  emote: ['heart', 'bolt', 'experiment']
+  emote: ['cactus', 'pine', 'palm']
 }
 ```
 Users

@@ -24,14 +24,14 @@
             v-show="count == 2 || !isMobile"
           />
           <div class="buttons-container">
-          <button class="submit-form" @click="submitMultiple()" v-show="!isMobile">Continua</button>
+            <button class="submit-form" @click="submitMultiple()" v-show="!isMobile">Continua</button>
           </div>
         </div>
         <div class="final-step" v-show="success">
           <hr>
           <br>
           Ci siamo ! abbiamo inviato una mail di conferma a {{ userData.email }}
-          <div class="buttons-container">
+          <div class="buttons-container alt-class">
             <button @click="reload">Continua</button>
           </div>
         </div>
@@ -44,6 +44,7 @@ import SelectConf from './Form/SelectConf.vue'
 import UserData from './Form/UserData.vue'
 import AddressSelection from './Form/AddressSelection.vue'
 import VisualizerItem from './VisualizerItem.vue'
+
 import { createToaster } from '@meforma/vue-toaster'
 import { mapState } from 'vuex'
 import debounce from '../utils/debounce'
@@ -86,7 +87,7 @@ export default {
       this.$refs.selectConf.handleSubmit()
     },
     switchMobileMode () {
-      this.$store.commit('SWITCH_MOBILE', window.innerWidth < 600)
+      this.$store.commit('SWITCH_MOBILE', window.innerWidth < 768)
       if (this.isMobile) {
         this.$store.commit('CHANGE_COUNT', 0)
       }
@@ -117,17 +118,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/variables";
 .layout {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 65vh 1fr;
   &-preview {
     display: grid;
     justify-content: center;
     align-items: center;
+    grid-template-rows: 1fr;
+
   }
-  @media all and(min-width: 600px) {
+  @media all and(min-width: 768px) {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     min-height: 100vh;

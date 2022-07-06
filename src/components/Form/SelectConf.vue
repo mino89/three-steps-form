@@ -42,7 +42,7 @@
       <label> Emote </label>
       <div class="radio-group">
         <div class="radio-item" v-for="item in defaults.emotes" :key="item">
-          <label :for="item.id">{{ item.value }}</label>
+          <label class="emote" :for="item.id">{{ item.value }}</label>
           <input
             type="radio"
             :id="item.id"
@@ -99,11 +99,15 @@ export default {
       cursor: pointer;
       padding: 0.5rem;
     }
+
   }
 }
-
+.emote{
+  font-size: 2.5rem;
+}
 .square {
-  height: 16px;
-  width: 16px;
+  height: 24px;
+  width: 24px;
+  border-radius: 6px;
 }
 </style>

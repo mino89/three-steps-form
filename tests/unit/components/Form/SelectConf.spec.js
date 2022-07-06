@@ -14,9 +14,9 @@ describe('SelectConf.vue', () => {
           { id: 'grey', value: '#d1d1d1' }
         ],
         emotes: [
-          { id: 'heart', value: '❤️' },
-          { id: 'bolt', value: '⚡️' },
-          { id: 'experiment', value: '🧪' },
+          { id: "cactus", value: "🌵" },
+          { id: "pine", value: "🌲" },
+          { id: "palm", value: "🌴" },
           { id: 'sun', value: '☀️' },
           { id: 'star', value: '✨' }
         ]
@@ -59,7 +59,7 @@ describe('SelectConf.vue', () => {
     await colorInputs[2].setChecked('true')
     expect(request.color).toBe('green')
     await emoteInputs[2].setChecked('true')
-    expect(request.emote).toBe('experiment')
+    expect(request.emote).toBe('palm')
     await wrapper.find('form').trigger('submit')
     expect(wrapper.vm.checkAvailability).toBeCalled()
     expect(wrapper.emitted()).toHaveProperty('submit')

@@ -49,5 +49,6 @@ export default {
 <style lang="scss" scoped>
 svg {
   transition: var(--color-transition);
+  fill: var(--base-color)
 }
 </style>

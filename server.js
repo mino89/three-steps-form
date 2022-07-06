@@ -19,7 +19,7 @@ app.use(cors())
 const Stock = {
   size: ['M', 'L', 'XXL'],
   color: ['red', 'yellow', 'green'],
-  emote: ['heart', 'bolt', 'experiment']
+  emote: ['cactus', 'pine', 'palm']
 }
 // simulate the users database of options
 const Users = [

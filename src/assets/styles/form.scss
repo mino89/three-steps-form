@@ -12,19 +12,24 @@ label {
 }
 
 form {
-    margin-top: 2rem;
     min-width: 300px;
+    margin: 2rem 0;
+    @media all and(min-width: 768px){
+        margin: 7.5vh 0;
+    }
 }
 
 input[type=text],
 input[type=email] {
     width: calc(100% - 2rem);
     padding: .5rem 1rem;
-
+    border-style: none;
+    border: 1px solid var(--base-color);
+    border-radius: 1rem;
 }
 
 button {
-    font-size: clamp( calc(var(--buttons-font-size) - .5rem), 5vw,  calc(var(--buttons-font-size) + .25rem) );
+    font-size: clamp(calc(var(--buttons-font-size) - .5rem), 5vw, calc(var(--buttons-font-size) + .25rem));
     padding: .75rem 1rem;
     border-radius: 1rem;
     border: none;
@@ -32,5 +37,6 @@ button {
     cursor: pointer;
     margin: .5rem auto;
     text-align: center;
-
+    background-color: var(--base-color);
+    color: var(--background-color);
 }

@@ -23,18 +23,15 @@ export default {
         background: 'green'
       }
     },
-    size () {
-      return this.config.size ? this.config.size : 'M'
-    },
     color () {
       return this.config.color
         ? this.defaults.colors.find((x) => x.id === this.config.color).value
-        : '#000000'
+        : null
     },
     emote () {
       return this.config.emote
         ? this.defaults.emotes.find((x) => x.id === this.config.emote).value
-        : '🖌'
+        : '🍃'
     }
   }
 }
@@ -48,7 +45,8 @@ export default {
     justify-content: center;
     flex-direction: column;
     width: clamp(35vw, 40vw, 35vw);
-    position: relative;
+    position: sticky;
+    top: 1rem;
   }
   &-background {
     position: absolute;
@@ -57,6 +55,7 @@ export default {
     display: flex;
     opacity: .25;
     transition: all .3s ease;
+    background: var(--base-color);
   }
 
   &-icon {

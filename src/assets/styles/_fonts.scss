@@ -12,7 +12,7 @@ body {
 .main-title {
     font-size: clamp(calc(var(--titles-font-size)), 5vw, calc(var(--titles-font-size) + 0.75rem));
     font-weight: bold;
-
+    padding-bottom: .25em;
     &-spaces {
         margin: 0 auto;
         padding-top: 1rem;

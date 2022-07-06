@@ -19,9 +19,9 @@ export default createStore({
                 { id: "grey", value: "#d1d1d1" },
             ],
             emotes: [
-                { id: "heart", value: "❤️" },
-                { id: "bolt", value: "⚡️" },
-                { id: "experiment", value: "🧪" },
+                { id: "cactus", value: "🌵" },
+                { id: "pine", value: "🌲" },
+                { id: "palm", value: "🌴" },
                 { id: "sun", value: "☀️" },
                 { id: "star", value: "✨" },
             ]
@@ -49,11 +49,13 @@ export default createStore({
             state.configuration = configuration
         },
         UPDATE_MESSAGE(state, message) {
-            state.message = message
-        },
-        CLEAR_MESSAGE(state) {
             state.message = null
+            setTimeout(()=>{
+                state.message = message
+
+            })
         },
+
         SWITCH_MOBILE(state, bool) {
             state.isMobile = bool
         },
@@ -66,9 +68,7 @@ export default createStore({
             axios
                 .post(`${API}/${endpoint}`, payload)
                 .then((res) => {
-                    commit("CLEAR_MESSAGE")
                     commit("CHANGE_COUNT", to);
-                    console.log(res)
                 })
                 .catch((err) => {
                     commit('UPDATE_MESSAGE', err.response.data.message);
@@ -84,15 +84,13 @@ export default createStore({
             return dispatch('postRequest', { endpoint: 'check-address', payload, to: 3 })
         },
         submitData({ commit }, payload) {
-
-
             axios
                 .post(`${API}/submit-data`, payload)
                 .then(() => {
                     commit('SWITCH_SUCCESS')
                 })
                 .catch((error) => {
-                    this.$store.commit('UPDATE_MESSAGE', error.response.data.message)
+                   commit('UPDATE_MESSAGE', error.response.data.message)
                 })
 
         }
