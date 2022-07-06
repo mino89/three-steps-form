@@ -485,6 +485,8 @@ exports[`FormSteps.vue renders correctly 1`] = `
         <hr />
         <br />
          Ci siamo ! abbiamo inviato una mail di conferma a  
+        <br />
+        <br />
         <div
           class="buttons-container alt-class"
         >

@@ -31,6 +31,8 @@
           <hr>
           <br>
           Ci siamo ! abbiamo inviato una mail di conferma a {{ userData.email }}
+          <br>
+          <br>
           <div class="buttons-container alt-class">
             <button @click="reload">Continua</button>
           </div>
