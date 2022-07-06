@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="checkAvailability">
     <div>
-      Seleziona le opzioni
+      <h2 class="title">Seleziona le opzioni</h2>
       <hr />
     </div>
     <fieldset>
@@ -54,9 +54,11 @@
         </div>
       </div>
     </fieldset>
-    <button v-show="$store.state.isMobile" type="submit" ref="submit">
-      submit
-    </button>
+    <div class="buttons-container">
+      <button v-show="$store.state.isMobile" type="submit" ref="submit">
+        Continua
+      </button>
+    </div>
   </form>
 </template>
 
@@ -87,6 +89,8 @@ export default {
 .radio {
   &-group {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
   &-item {
     display: flex;

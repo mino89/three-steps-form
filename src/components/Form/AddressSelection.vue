@@ -1,25 +1,27 @@
 <template>
-  <form @submit.prevent="checkUser" ref="form">
+  <form @submit.prevent="checkAddress" ref="form">
     <div>
-      spedizione
+      <h2 class="title">Spedizione</h2>
       <hr />
     </div>
     <fieldset>
       <label for="name">Indirizzo</label>
-      <input type="text" name="name" v-model="req.address" required />
+      <input type="text" name="address" v-model="req.address" required />
     </fieldset>
-    <button v-show="$store.state.isMobile" @click="$store.commit('CHANGE_COUNT',1)" >
-      Precedente
-    </button>
-    <button v-show="$store.state.isMobile" type="submit" ref="submit">
-      Successivo
-    </button>
+    <div class="buttons-container">
+      <button v-show="$store.state.isMobile" @click="$store.commit('CHANGE_COUNT',1)" >
+        Precedente
+      </button>
+      <button v-show="$store.state.isMobile" type="submit" ref="submit">
+        Successivo
+      </button>
+    </div>
   </form>
 </template>
 
 <script>
 export default {
-  name: 'AddresSelection',
+  name: 'AddressSelection',
   props: {
     isMobile: Boolean,
     request: Object
@@ -35,7 +37,7 @@ export default {
     handleSubmit () {
       this.$refs.submit.click()
     },
-    checkUser () {
+    checkAddress () {
       this.$store.dispatch('checkAddressData', this.req)
     }
   }

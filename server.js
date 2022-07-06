@@ -25,17 +25,17 @@ const Stock = {
 const Users = [
   {
     name: 'Mario Rossi',
-    email: 'mariorossi@mail.it'
+    email: 'existing-mail@mail.com'
   },
   {
     name: 'Francesco Bianchi',
-    email: 'francescobianchi@mail.it'
+    email: 'other-existing-mail@mail.com'
   }
 ]
 // simulate available addresses
 const Addresses = [
-  'via dei matti 8',
-  'via dei tigli 3'
+  'existing street 122',
+  'main street 46'
 ]
 
 // errors validation
@@ -46,7 +46,7 @@ const Validate = (available, valid, res) => {
     } else if (!valid) {
       reject(res.status(400).json({ message: 'compila tutti i campi necessari' }))
     } else {
-      reject(new Error("something bad happened"))
+      reject(new Error('something bad happened'))
     }
   })
 }

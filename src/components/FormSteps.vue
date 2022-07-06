@@ -4,29 +4,37 @@
       <VisualizerItem :config="configuration" :defaults="defaults" />
     </div>
     <div class="col">
-      <div class="slot" v-if="!success">
-        <SelectConf
-          :request="configuration"
-          :defaults="defaults"
-          ref="selectConf"
-          v-show="count == 0 || !isMobile"
-        />
-        <UserData
-          :request="userData"
-          ref="userData"
-          v-show="count == 1 || !isMobile"
-        />
-        <AddressSelection
-          :request="addressData"
-          ref="addressSelection"
-          v-show="count == 2 || !isMobile"
-        />
-        <button @click="submitMultiple()" v-show="!isMobile">Continua</button>
-      </div>
-      <div class="slot" v-show="success">
-        Ci siamo ! abbiamo inviato una mail di conferma a {{ userData.email }}
-        <br />
-        <button @click="reload">Continua</button>
+      <div class="slot">
+        <h1 class="main-title main-title-spaces">Configura la tua t-shirt!</h1>
+        <div v-if="!success">
+          <SelectConf
+            :request="configuration"
+            :defaults="defaults"
+            ref="selectConf"
+            v-show="count == 0 || !isMobile"
+          />
+          <UserData
+            :request="userData"
+            ref="userData"
+            v-show="count == 1 || !isMobile"
+          />
+          <AddressSelection
+            :request="addressData"
+            ref="addressSelection"
+            v-show="count == 2 || !isMobile"
+          />
+          <div class="buttons-container">
+          <button class="submit-form" @click="submitMultiple()" v-show="!isMobile">Continua</button>
+          </div>
+        </div>
+        <div class="final-step" v-show="success">
+          <hr>
+          <br>
+          Ci siamo ! abbiamo inviato una mail di conferma a {{ userData.email }}
+          <div class="buttons-container">
+            <button @click="reload">Continua</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -54,6 +62,7 @@ export default {
   computed: {
     ...mapState([
       'count',
+      'success',
       'configuration',
       'userData',
       'addressData',
@@ -61,25 +70,14 @@ export default {
       'defaults'
     ])
   },
-  data () {
-    return {
-      success: false
-    }
-  },
   created () {
     this.switchMobileMode()
   },
   mounted () {
-    window.addEventListener(
-      'resize',
-      debounce(this.switchMobileMode, 500)
-    )
+    window.addEventListener('resize', debounce(this.switchMobileMode, 500))
   },
   unmounted () {
-    window.removeEventListener(
-      'resize',
-      debounce(this.switchMobileMode, 500)
-    )
+    window.removeEventListener('resize', debounce(this.switchMobileMode, 500))
   },
   methods: {
     submitMultiple () {
@@ -87,12 +85,8 @@ export default {
       this.$refs.userData.handleSubmit()
       this.$refs.selectConf.handleSubmit()
     },
-
     switchMobileMode () {
-      this.$store.commit(
-        'SWITCH_MOBILE',
-        window.innerWidth < 600
-      )
+      this.$store.commit('SWITCH_MOBILE', window.innerWidth < 600)
       if (this.isMobile) {
         this.$store.commit('CHANGE_COUNT', 0)
       }
@@ -110,18 +104,11 @@ export default {
     '$store.state.count': {
       handler: function (count) {
         if (count > 2) {
-          this.$store
-            .dispatch('submitData', {
-              configuration: this.configuration,
-              user: this.userData,
-              address: this.addressData
-            })
-            .then(() => {
-              this.success = true
-            })
-            .catch((error) => {
-              this.$store.commit('UPDATE_MESSAGE', error.response.data.message)
-            })
+          this.$store.dispatch('submitData', {
+            configuration: this.configuration,
+            user: this.userData,
+            address: this.addressData
+          })
         }
       }
     }

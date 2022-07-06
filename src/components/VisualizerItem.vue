@@ -3,7 +3,7 @@
 
   <div class="tshirt-container slot">
     <i class="tshirt-icon">{{ emote }}</i>
-    <tshirt-item :color="color" />
+    <tshirt-item class="tshirt-sticky-item" :color="color" />
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
 
   &-icon {
     position: absolute;
-    font-size:  clamp(1rem, 10vw, 10rem);
+    font-size:  clamp(1rem, 10vw, 8rem);
     font-style: normal;
   }
 }

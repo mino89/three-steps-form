@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="checkUser" ref="form">
       <div>
-      Dati Personali
+      <h2 class="title">Dati Personali</h2>
       <hr>
     </div>
     <fieldset>
@@ -17,10 +17,12 @@
         required
       />
     </fieldset>
-    <button v-show="$store.state.isMobile" @click="$store.commit('CHANGE_COUNT',0)" >
-      Precedente
-    </button>
-    <button v-show="$store.state.isMobile" type="submit" ref="submit">Successivo</button>
+    <div class="buttons-container">
+      <button v-show="$store.state.isMobile" @click="$store.commit('CHANGE_COUNT',0)" >
+        Precedente
+      </button>
+      <button v-show="$store.state.isMobile" type="submit" ref="submit">Successivo</button>
+    </div>
   </form>
 </template>
 

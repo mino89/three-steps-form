@@ -7,6 +7,7 @@ const API = "http://localhost:4000"
 export default createStore({
     state: {
         count: 0,
+        success: false,
         isMobile: false,
         defaults: {
             sizes: ["XS", "S", "M", "L", "XXL"],
@@ -55,6 +56,9 @@ export default createStore({
         },
         SWITCH_MOBILE(state, bool) {
             state.isMobile = bool
+        },
+        SWITCH_SUCCESS(state) {
+            state.success = !state.success
         }
     },
     actions: {
@@ -79,17 +83,18 @@ export default createStore({
         checkAddressData({ dispatch }, payload) {
             return dispatch('postRequest', { endpoint: 'check-address', payload, to: 3 })
         },
-        submitData({ dispatch }, payload) {
-            return new Promise((resolve, reject) => {
-                axios
-                    .post(`${API}/submit-data`, payload)
-                    .then((response) => {
-                        resolve(response)
-                    })
-                    .catch((error) => {
-                        reject(error)
-                    })
-            })
+        submitData({ commit }, payload) {
+
+
+            axios
+                .post(`${API}/submit-data`, payload)
+                .then(() => {
+                    commit('SWITCH_SUCCESS')
+                })
+                .catch((error) => {
+                    this.$store.commit('UPDATE_MESSAGE', error.response.data.message)
+                })
+
         }
     }
 })
