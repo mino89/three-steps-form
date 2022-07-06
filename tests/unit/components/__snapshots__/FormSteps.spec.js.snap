@@ -69,412 +69,423 @@ exports[`FormSteps.vue renders correctly 1`] = `
         Configura la tua t-shirt!
       </h1>
       <div>
-        <form>
-          <div>
-            <h2
-              class="title"
-            >
-              Seleziona le opzioni
-            </h2>
-            <hr />
-          </div>
-          <fieldset>
-            <label>
-               Taglia 
-            </label>
-            <div
-              class="radio-group"
-            >
-              
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="XS"
+        <slideritem
+          count="0"
+          mobile="false"
+        >
+          <slidernode>
+            <form>
+              <div>
+                <h2
+                  class="title"
                 >
-                  XS
-                </label>
-                <input
-                  id="XS"
-                  name="size"
-                  required=""
-                  type="radio"
-                  value="XS"
-                />
+                  Seleziona le opzioni
+                </h2>
+                <hr />
               </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="S"
-                >
-                  S
+              <fieldset>
+                <label>
+                   Taglia 
                 </label>
-                <input
-                  id="S"
-                  name="size"
-                  required=""
-                  type="radio"
-                  value="S"
-                />
-              </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="M"
+                <div
+                  class="radio-group"
                 >
-                  M
-                </label>
-                <input
-                  id="M"
-                  name="size"
-                  required=""
-                  type="radio"
-                  value="M"
-                />
-              </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="L"
-                >
-                  L
-                </label>
-                <input
-                  id="L"
-                  name="size"
-                  required=""
-                  type="radio"
-                  value="L"
-                />
-              </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="XXL"
-                >
-                  XXL
-                </label>
-                <input
-                  id="XXL"
-                  name="size"
-                  required=""
-                  type="radio"
-                  value="XXL"
-                />
-              </div>
-              
-            </div>
-          </fieldset>
-          <fieldset>
-            <label>
-               Colore 
-            </label>
-            <div
-              class="radio-group"
-            >
-              
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="red"
-                >
+                  
                   <div
-                    class="square"
-                    style="background: rgb(245, 75, 66);"
-                  />
-                </label>
-                <input
-                  id="red"
-                  name="color"
-                  required=""
-                  type="radio"
-                  value="red"
-                />
-              </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="yellow"
-                >
+                    class="radio-item"
+                  >
+                    <label
+                      for="XS"
+                    >
+                      XS
+                    </label>
+                    <input
+                      id="XS"
+                      name="size"
+                      required=""
+                      type="radio"
+                      value="XS"
+                    />
+                  </div>
                   <div
-                    class="square"
-                    style="background: rgb(245, 230, 66);"
-                  />
-                </label>
-                <input
-                  id="yellow"
-                  name="color"
-                  required=""
-                  type="radio"
-                  value="yellow"
-                />
-              </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="green"
-                >
+                    class="radio-item"
+                  >
+                    <label
+                      for="S"
+                    >
+                      S
+                    </label>
+                    <input
+                      id="S"
+                      name="size"
+                      required=""
+                      type="radio"
+                      value="S"
+                    />
+                  </div>
                   <div
-                    class="square"
-                    style="background: rgb(72, 245, 66);"
-                  />
-                </label>
-                <input
-                  id="green"
-                  name="color"
-                  required=""
-                  type="radio"
-                  value="green"
-                />
-              </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="orange"
-                >
+                    class="radio-item"
+                  >
+                    <label
+                      for="M"
+                    >
+                      M
+                    </label>
+                    <input
+                      id="M"
+                      name="size"
+                      required=""
+                      type="radio"
+                      value="M"
+                    />
+                  </div>
                   <div
-                    class="square"
-                    style="background: rgb(245, 170, 66);"
-                  />
-                </label>
-                <input
-                  id="orange"
-                  name="color"
-                  required=""
-                  type="radio"
-                  value="orange"
-                />
-              </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  for="grey"
-                >
+                    class="radio-item"
+                  >
+                    <label
+                      for="L"
+                    >
+                      L
+                    </label>
+                    <input
+                      id="L"
+                      name="size"
+                      required=""
+                      type="radio"
+                      value="L"
+                    />
+                  </div>
                   <div
-                    class="square"
-                    style="background: rgb(209, 209, 209);"
-                  />
+                    class="radio-item"
+                  >
+                    <label
+                      for="XXL"
+                    >
+                      XXL
+                    </label>
+                    <input
+                      id="XXL"
+                      name="size"
+                      required=""
+                      type="radio"
+                      value="XXL"
+                    />
+                  </div>
+                  
+                </div>
+              </fieldset>
+              <fieldset>
+                <label>
+                   Colore 
                 </label>
-                <input
-                  id="grey"
-                  name="color"
-                  required=""
-                  type="radio"
-                  value="grey"
-                />
-              </div>
-              
-            </div>
-          </fieldset>
-          <fieldset>
-            <label>
-               Emote 
-            </label>
-            <div
-              class="radio-group"
-            >
-              
-              <div
-                class="radio-item"
-              >
-                <label
-                  class="emote"
-                  for="cactus"
+                <div
+                  class="radio-group"
                 >
-                  🌵
+                  
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      for="red"
+                    >
+                      <div
+                        class="square"
+                        style="background: rgb(245, 75, 66);"
+                      />
+                    </label>
+                    <input
+                      id="red"
+                      name="color"
+                      required=""
+                      type="radio"
+                      value="red"
+                    />
+                  </div>
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      for="yellow"
+                    >
+                      <div
+                        class="square"
+                        style="background: rgb(245, 230, 66);"
+                      />
+                    </label>
+                    <input
+                      id="yellow"
+                      name="color"
+                      required=""
+                      type="radio"
+                      value="yellow"
+                    />
+                  </div>
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      for="green"
+                    >
+                      <div
+                        class="square"
+                        style="background: rgb(72, 245, 66);"
+                      />
+                    </label>
+                    <input
+                      id="green"
+                      name="color"
+                      required=""
+                      type="radio"
+                      value="green"
+                    />
+                  </div>
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      for="orange"
+                    >
+                      <div
+                        class="square"
+                        style="background: rgb(245, 170, 66);"
+                      />
+                    </label>
+                    <input
+                      id="orange"
+                      name="color"
+                      required=""
+                      type="radio"
+                      value="orange"
+                    />
+                  </div>
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      for="grey"
+                    >
+                      <div
+                        class="square"
+                        style="background: rgb(209, 209, 209);"
+                      />
+                    </label>
+                    <input
+                      id="grey"
+                      name="color"
+                      required=""
+                      type="radio"
+                      value="grey"
+                    />
+                  </div>
+                  
+                </div>
+              </fieldset>
+              <fieldset>
+                <label>
+                   Emote 
                 </label>
-                <input
-                  id="cactus"
-                  name="emote"
-                  required=""
-                  type="radio"
-                  value="cactus"
-                />
-              </div>
-              <div
-                class="radio-item"
-              >
-                <label
-                  class="emote"
-                  for="pine"
+                <div
+                  class="radio-group"
                 >
-                  🌲
-                </label>
-                <input
-                  id="pine"
-                  name="emote"
-                  required=""
-                  type="radio"
-                  value="pine"
-                />
-              </div>
+                  
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      class="emote"
+                      for="cactus"
+                    >
+                      🌵
+                    </label>
+                    <input
+                      id="cactus"
+                      name="emote"
+                      required=""
+                      type="radio"
+                      value="cactus"
+                    />
+                  </div>
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      class="emote"
+                      for="pine"
+                    >
+                      🌲
+                    </label>
+                    <input
+                      id="pine"
+                      name="emote"
+                      required=""
+                      type="radio"
+                      value="pine"
+                    />
+                  </div>
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      class="emote"
+                      for="palm"
+                    >
+                      🌴
+                    </label>
+                    <input
+                      id="palm"
+                      name="emote"
+                      required=""
+                      type="radio"
+                      value="palm"
+                    />
+                  </div>
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      class="emote"
+                      for="sun"
+                    >
+                      ☀️
+                    </label>
+                    <input
+                      id="sun"
+                      name="emote"
+                      required=""
+                      type="radio"
+                      value="sun"
+                    />
+                  </div>
+                  <div
+                    class="radio-item"
+                  >
+                    <label
+                      class="emote"
+                      for="star"
+                    >
+                      ✨
+                    </label>
+                    <input
+                      id="star"
+                      name="emote"
+                      required=""
+                      type="radio"
+                      value="star"
+                    />
+                  </div>
+                  
+                </div>
+              </fieldset>
               <div
-                class="radio-item"
+                class="buttons-container"
               >
-                <label
-                  class="emote"
-                  for="palm"
+                <button
+                  style="display: none;"
+                  type="submit"
                 >
-                  🌴
+                   Continua 
+                </button>
+              </div>
+            </form>
+          </slidernode>
+          <slidernode>
+            <form>
+              <div>
+                <h2
+                  class="title"
+                >
+                  Dati Personali
+                </h2>
+                <hr />
+              </div>
+              <fieldset>
+                <label
+                  for="name"
+                >
+                  Nome
                 </label>
                 <input
-                  id="palm"
-                  name="emote"
+                  name="name"
                   required=""
-                  type="radio"
-                  value="palm"
+                  type="text"
                 />
-              </div>
+              </fieldset>
+              <fieldset>
+                <label
+                  for="email"
+                >
+                  Email
+                </label>
+                <input
+                  name="email"
+                  required=""
+                  type="email"
+                />
+              </fieldset>
               <div
-                class="radio-item"
+                class="buttons-container"
               >
-                <label
-                  class="emote"
-                  for="sun"
+                <button
+                  style="display: none;"
                 >
-                  ☀️
+                   Precedente 
+                </button>
+                <button
+                  style="display: none;"
+                  type="submit"
+                >
+                  Successivo
+                </button>
+              </div>
+            </form>
+          </slidernode>
+          <slidernode>
+            <form>
+              <div>
+                <h2
+                  class="title"
+                >
+                  Spedizione
+                </h2>
+                <hr />
+              </div>
+              <fieldset>
+                <label
+                  for="name"
+                >
+                  Indirizzo
                 </label>
                 <input
-                  id="sun"
-                  name="emote"
+                  name="address"
                   required=""
-                  type="radio"
-                  value="sun"
+                  type="text"
                 />
-              </div>
+              </fieldset>
               <div
-                class="radio-item"
+                class="buttons-container"
               >
-                <label
-                  class="emote"
-                  for="star"
+                <button
+                  style="display: none;"
                 >
-                  ✨
-                </label>
-                <input
-                  id="star"
-                  name="emote"
-                  required=""
-                  type="radio"
-                  value="star"
-                />
+                   Precedente 
+                </button>
+                <button
+                  style="display: none;"
+                  type="submit"
+                >
+                   Successivo 
+                </button>
               </div>
-              
-            </div>
-          </fieldset>
-          <div
-            class="buttons-container"
-          >
-            <button
-              style="display: none;"
-              type="submit"
-            >
-               Continua 
-            </button>
-          </div>
-        </form>
-        <form>
-          <div>
-            <h2
-              class="title"
-            >
-              Dati Personali
-            </h2>
-            <hr />
-          </div>
-          <fieldset>
-            <label
-              for="name"
-            >
-              Nome
-            </label>
-            <input
-              name="name"
-              required=""
-              type="text"
-            />
-          </fieldset>
-          <fieldset>
-            <label
-              for="email"
-            >
-              Email
-            </label>
-            <input
-              name="email"
-              required=""
-              type="email"
-            />
-          </fieldset>
-          <div
-            class="buttons-container"
-          >
-            <button
-              style="display: none;"
-            >
-               Precedente 
-            </button>
-            <button
-              style="display: none;"
-              type="submit"
-            >
-              Successivo
-            </button>
-          </div>
-        </form>
-        <form>
-          <div>
-            <h2
-              class="title"
-            >
-              Spedizione
-            </h2>
-            <hr />
-          </div>
-          <fieldset>
-            <label
-              for="name"
-            >
-              Indirizzo
-            </label>
-            <input
-              name="address"
-              required=""
-              type="text"
-            />
-          </fieldset>
-          <div
-            class="buttons-container"
-          >
-            <button
-              style="display: none;"
-            >
-               Precedente 
-            </button>
-            <button
-              style="display: none;"
-              type="submit"
-            >
-               Successivo 
-            </button>
-          </div>
-        </form>
+            </form>
+          </slidernode>
+        </slideritem>
         <div
           class="buttons-container"
         >
           <button
             class="submit-form"
           >
-            Continua
+             Continua 
           </button>
         </div>
       </div>

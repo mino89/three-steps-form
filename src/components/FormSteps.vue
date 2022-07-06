@@ -7,29 +7,42 @@
       <div class="slot">
         <h1 class="main-title main-title-spaces">Configura la tua t-shirt!</h1>
         <div v-if="!success">
-          <SelectConf
-            :request="configuration"
-            :defaults="defaults"
-            ref="selectConf"
-            v-show="count == 0 || !isMobile"
-          />
-          <UserData
-            :request="userData"
-            ref="userData"
-            v-show="count == 1 || !isMobile"
-          />
-          <AddressSelection
-            :request="addressData"
-            ref="addressSelection"
-            v-show="count == 2 || !isMobile"
-          />
+          <SliderItem :count="count" :mobile="isMobile">
+            <SliderNode>
+              <SelectConf
+                :request="configuration"
+                :defaults="defaults"
+                ref="selectConf"
+              />
+            </SliderNode>
+            <SliderNode>
+              <UserData
+                :request="userData"
+                ref="userData"
+                v-show="count == 1 || !isMobile"
+              />
+            </SliderNode>
+            <SliderNode>
+              <AddressSelection
+                :request="addressData"
+                ref="addressSelection"
+                v-show="count == 2 || !isMobile"
+              />
+            </SliderNode>
+          </SliderItem>
           <div class="buttons-container">
-            <button class="submit-form" @click="submitMultiple()" v-show="!isMobile">Continua</button>
+            <button
+              class="submit-form"
+              @click="submitMultiple()"
+              v-show="!isMobile"
+            >
+              Continua
+            </button>
           </div>
         </div>
         <div class="final-step" v-show="success">
-          <hr>
-          <br>
+          <hr />
+          <br />
           Ci siamo ! abbiamo inviato una mail di conferma a {{ userData.email }}
           <div class="buttons-container alt-class">
             <button @click="reload">Continua</button>
@@ -44,21 +57,21 @@ import SelectConf from './Form/SelectConf.vue'
 import UserData from './Form/UserData.vue'
 import AddressSelection from './Form/AddressSelection.vue'
 import VisualizerItem from './VisualizerItem.vue'
-
+import { SliderItem, SliderNode } from './SliderItem.vue'
 import { createToaster } from '@meforma/vue-toaster'
 import { mapState } from 'vuex'
-import debounce from '../utils/debounce'
 const toaster = createToaster({
   type: 'error'
 })
-
 export default {
   name: 'FormSteps',
   components: {
     SelectConf,
     UserData,
     AddressSelection,
-    VisualizerItem
+    VisualizerItem,
+    SliderItem,
+    SliderNode
   },
   computed: {
     ...mapState([
@@ -71,26 +84,11 @@ export default {
       'defaults'
     ])
   },
-  created () {
-    this.switchMobileMode()
-  },
-  mounted () {
-    window.addEventListener('resize', debounce(this.switchMobileMode, 500))
-  },
-  unmounted () {
-    window.removeEventListener('resize', debounce(this.switchMobileMode, 500))
-  },
   methods: {
     submitMultiple () {
       this.$refs.addressSelection.handleSubmit()
       this.$refs.userData.handleSubmit()
       this.$refs.selectConf.handleSubmit()
-    },
-    switchMobileMode () {
-      this.$store.commit('SWITCH_MOBILE', window.innerWidth < 768)
-      if (this.isMobile) {
-        this.$store.commit('CHANGE_COUNT', 0)
-      }
     },
     reload () {
       window.location.reload()
@@ -127,7 +125,6 @@ export default {
     justify-content: center;
     align-items: center;
     grid-template-rows: 1fr;
-
   }
   @media all and(min-width: 768px) {
     grid-template-columns: 1fr 1fr;
