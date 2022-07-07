@@ -14,9 +14,9 @@ describe('SelectConf.vue', () => {
           { id: 'grey', value: '#d1d1d1' }
         ],
         emotes: [
-          { id: "cactus", value: "🌵" },
-          { id: "pine", value: "🌲" },
-          { id: "palm", value: "🌴" },
+          { id: 'cactus', value: '🌵' },
+          { id: 'pine', value: '🌲' },
+          { id: 'palm', value: '🌴' },
           { id: 'sun', value: '☀️' },
           { id: 'star', value: '✨' }
         ]

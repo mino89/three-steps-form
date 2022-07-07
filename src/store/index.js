@@ -2,11 +2,21 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 
+// in a real scenario store this value in 
 const API = "http://localhost:4000"
+
+// resets the message value 
+const clearMessage = (message) => {
+    return new Promise((resolve) => {
+        message = null
+        resolve(message)
+    })
+}
 
 export default createStore({
     state: {
         count: 0,
+        loading: false,
         success: false,
         isMobile: false,
         defaults: {
@@ -41,21 +51,22 @@ export default createStore({
         message: null
     },
     mutations: {
-
         CHANGE_COUNT(state, count) {
             state.count = count
         },
         UPDATE_CONFIGURATION(state, configuration) {
             state.configuration = configuration
         },
-        UPDATE_MESSAGE(state, message) {
-            state.message = null
-            setTimeout(()=>{
-                state.message = message
-
-            })
+        UPDATE_LOADING(state, val) {
+            state.loading = val
         },
-
+        UPDATE_MESSAGE(state, message) {
+            clearMessage(state.message)
+                .then((res) => {
+                    state.message = res
+                })
+                .then(() => state.message = message)
+        },
         SWITCH_MOBILE(state, bool) {
             state.isMobile = bool
         },
@@ -67,11 +78,8 @@ export default createStore({
         postRequest({ commit }, { endpoint, payload, to }) {
             axios
                 .post(`${API}/${endpoint}`, payload)
-                .then((res) => {
+                .then(() => {
                     commit("CHANGE_COUNT", to);
-                })
-                .catch((err) => {
-                    commit('UPDATE_MESSAGE', err.response.data.message);
                 })
         },
         checkConfiguration({ dispatch }, payload) {
@@ -89,10 +97,6 @@ export default createStore({
                 .then(() => {
                     commit('SWITCH_SUCCESS')
                 })
-                .catch((error) => {
-                   commit('UPDATE_MESSAGE', error.response.data.message)
-                })
-
         }
     }
 })

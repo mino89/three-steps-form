@@ -1,6 +1,5 @@
 <template>
-    <span class="tshirt-background" :style="{ background: color }"></span>
-
+  <span class="tshirt-background" :style="{ background: color }"></span>
   <div class="tshirt-container slot">
     <i class="tshirt-icon">{{ emote }}</i>
     <tshirt-item class="tshirt-sticky-item" :color="color" />
@@ -16,13 +15,8 @@ export default {
     config: Object,
     defaults: Object
   },
+  // if null value from props set a default
   computed: {
-    dynamicBg () {
-      return {
-        // in the case of redComp, greenComp and blueComp are a vue prop or data
-        background: 'green'
-      }
-    },
     color () {
       return this.config.color
         ? this.defaults.colors.find((x) => x.id === this.config.color).value

@@ -26,7 +26,6 @@ export default {
     isMobile: Boolean,
     request: Object
   },
-
   data () {
     return {
       req: this.request

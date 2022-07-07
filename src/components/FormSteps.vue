@@ -41,19 +41,18 @@
     </div>
   </div>
 </template>
+
 <script>
 import SelectConf from './Form/SelectConf.vue'
 import UserData from './Form/UserData.vue'
 import AddressSelection from './Form/AddressSelection.vue'
 import VisualizerItem from './VisualizerItem.vue'
-
 import { createToaster } from '@meforma/vue-toaster'
 import { mapState } from 'vuex'
 import debounce from '../utils/debounce'
 const toaster = createToaster({
   type: 'error'
 })
-
 export default {
   name: 'FormSteps',
   components: {
@@ -83,27 +82,33 @@ export default {
     window.removeEventListener('resize', debounce(this.switchMobileMode, 500))
   },
   methods: {
+    // submit methods of child components are triggered in desktop mode
     submitMultiple () {
       this.$refs.addressSelection.handleSubmit()
       this.$refs.userData.handleSubmit()
       this.$refs.selectConf.handleSubmit()
     },
+    // send to store currendt mode setting
     switchMobileMode () {
       this.$store.commit('SWITCH_MOBILE', window.innerWidth < 768)
+      // if the window is resized it resets the order of elements to first
       if (this.isMobile) {
         this.$store.commit('CHANGE_COUNT', 0)
       }
     },
+    // reload the page at the end of last step
     reload () {
       window.location.reload()
     }
   },
   watch: {
+    // show toaster when message state changes
     '$store.state.message': {
       handler: function (message) {
         if (message) toaster.show(message)
       }
     },
+    // in last step we will send all data to backend
     '$store.state.count': {
       handler: function (count) {
         if (count > 2) {

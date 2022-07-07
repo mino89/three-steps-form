@@ -32,7 +32,6 @@ export default {
   props: {
     request: Object
   },
-
   data () {
     return {
       req: this.request

@@ -14,9 +14,9 @@ describe('VisualizerItem.vue', () => {
           { id: 'grey', value: '#d1d1d1' }
         ],
         emotes: [
-          { id: "cactus", value: "🌵" },
-          { id: "pine", value: "🌲" },
-          { id: "palm", value: "🌴" },
+          { id: 'cactus', value: '🌵' },
+          { id: 'pine', value: '🌲' },
+          { id: 'palm', value: '🌴' },
           { id: 'sun', value: '☀️' },
           { id: 'star', value: '✨' }
         ]
@@ -25,7 +25,7 @@ describe('VisualizerItem.vue', () => {
         color: 'red',
         emote: 'cactus'
       }
-    },
+    }
   }
 
   const config = $store.state.configuration
@@ -42,7 +42,6 @@ describe('VisualizerItem.vue', () => {
     expect(wrapper.vm.color).toBe(defaults.colors[0].value)
     expect(wrapper.vm.emote).toBe(defaults.emotes[0].value)
   })
-
 
   it('must render computed properties when they changes', () => {
     wrapper.vm.config.color = 'yellow'
