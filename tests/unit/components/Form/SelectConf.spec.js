@@ -26,15 +26,13 @@ describe('SelectConf.vue', () => {
         color: null,
         emote: null
       }
-    },
-    actions: {
-      checkConfiguration: jest.fn((param) => { return Promise.resolve(() => { }) })
-    },
-    dispatch: () => { data: 'dummyData' }
+    }
   }
 
   const request = $store.state.configuration
   const defaults = $store.state.defaults
+
+
 
   const wrapper = shallowMount(SelectConf, {
     global: {
@@ -50,8 +48,7 @@ describe('SelectConf.vue', () => {
   const colorInputs = wrapper.findAll('input[name=color]')
   const emoteInputs = wrapper.findAll('input[name=emote]')
 
-  const spy = jest.fn()
-  wrapper.vm.checkAvailability = spy
+  const checkAvailability = jest.spyOn(wrapper.vm, 'checkAvailability')
 
   it('must renders props and submit values when passed', async () => {
     await sizeInputs[2].setChecked('true')
@@ -61,8 +58,7 @@ describe('SelectConf.vue', () => {
     await emoteInputs[2].setChecked('true')
     expect(request.emote).toBe('palm')
     await wrapper.find('form').trigger('submit')
-    expect(wrapper.vm.checkAvailability).toBeCalled()
-    expect(wrapper.emitted()).toHaveProperty('submit')
+    expect(checkAvailability).toBeCalledTimes(1)
   })
 
   it('mustrender all options', () => {

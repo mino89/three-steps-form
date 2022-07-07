@@ -27,9 +27,7 @@ describe('FormSteps.vue', () => {
   const VisualizerItemCmp = wrapper.findComponent({ name: 'VisualizerItem' })
 
   const FinalStep = wrapper.find('.final-step')
-
-  const spy = jest.fn()
-  wrapper.vm.submitMultiple = spy
+  const submitMultiple = jest.spyOn(wrapper.vm, 'submitMultiple')
 
   it('renders correctly', () => {
     expect(wrapper.element).toMatchSnapshot()
@@ -74,7 +72,7 @@ describe('FormSteps.vue', () => {
   it('must call the method to submit data', async () => {
     await store.commit('SWITCH_MOBILE', false)
     wrapper.find('.submit-form').trigger('click')
-    expect(wrapper.vm.submitMultiple).toBeCalled()
+    expect(submitMultiple).toBeCalledTimes(1)
   })
 
   it('must render final Step', async () => {
