@@ -9,10 +9,10 @@
       <input type="text" name="address" v-model="req.address" required />
     </fieldset>
     <div class="buttons-container">
-      <button v-show="$store.state.isMobile" @click="$store.commit('CHANGE_COUNT',1)" >
+      <button v-show="isMobile" @click="$store.commit('CHANGE_COUNT',1)" >
         Precedente
       </button>
-      <button v-show="$store.state.isMobile" type="submit" ref="submit">
+      <button v-show="isMobile" type="submit" ref="submit">
         Successivo
       </button>
     </div>
@@ -23,7 +23,6 @@
 export default {
   name: 'AddressSelection',
   props: {
-    isMobile: Boolean,
     request: Object
   },
   data () {
@@ -31,13 +30,21 @@ export default {
       req: this.request
     }
   },
-  mounted () {},
+  computed: {
+    isMobile () {
+      return this.$store.state.isMobile
+    }
+  },
   methods: {
-    handleSubmit () {
-      this.$refs.submit.click()
+    async handleValidation () {
+      await this.$refs.submit.click()
+      this.$store.commit('IS_READY_PUSH', this.$refs.form.checkValidity())
     },
-    checkAddress () {
-      this.$store.dispatch('checkAddressData', this.req)
+    checkAddress (e) {
+      if (e.currentTarget.checkValidity() && this.isMobile) {
+        this.$store.dispatch('checkAddressData', this.req)
+        this.$emit('finalStep', true)
+      }
     }
   }
 }

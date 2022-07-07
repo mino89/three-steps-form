@@ -6,16 +6,17 @@ import axios from 'axios'
 const API = "http://localhost:4000"
 
 // resets the message value 
-const clearMessage = (message) => {
+const resetData = (data) => {
     return new Promise((resolve) => {
-        message = null
-        resolve(message)
+        data = null
+        resolve(data)
     })
 }
 
 export default createStore({
     state: {
         count: 0,
+        ready: [],
         loading: false,
         success: false,
         isMobile: false,
@@ -54,6 +55,9 @@ export default createStore({
         CHANGE_COUNT(state, count) {
             state.count = count
         },
+        IS_READY_PUSH(state, ready) {
+            state.ready.push(ready)
+        },
         UPDATE_CONFIGURATION(state, configuration) {
             state.configuration = configuration
         },
@@ -61,7 +65,7 @@ export default createStore({
             state.loading = val
         },
         UPDATE_MESSAGE(state, message) {
-            clearMessage(state.message)
+            resetData(state.message)
                 .then((res) => {
                     state.message = res
                 })
@@ -75,12 +79,21 @@ export default createStore({
         }
     },
     actions: {
+        //default post request method
         postRequest({ commit }, { endpoint, payload, to }) {
-            axios
-                .post(`${API}/${endpoint}`, payload)
-                .then(() => {
-                    commit("CHANGE_COUNT", to);
-                })
+            if (this.state.ready) {
+                axios
+                    .post(`${API}/${endpoint}`, payload)
+                    .then(() => {
+                        commit("CHANGE_COUNT", to);
+                    })
+            }
+        },
+        //check if there is a false vaule in array
+        async checkReadyState() {
+            const errors =  this.state.ready.some( x => !x)
+            this.state.ready = []
+            return errors ? false : true
         },
         checkConfiguration({ dispatch }, payload) {
             return dispatch('postRequest', { endpoint: 'check-availability', payload, to: 1 })

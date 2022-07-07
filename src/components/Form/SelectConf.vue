@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="checkAvailability">
+  <form @submit.prevent="checkAvailability" ref="form">
     <div>
       <h2 class="title">Seleziona le opzioni</h2>
       <hr />
@@ -55,7 +55,7 @@
       </div>
     </fieldset>
     <div class="buttons-container">
-      <button v-show="$store.state.isMobile" type="submit" ref="submit">
+      <button v-show="isMobile" type="submit" ref="submit">
         Continua
       </button>
     </div>
@@ -74,12 +74,20 @@ export default {
       req: this.request
     }
   },
+  computed: {
+    isMobile () {
+      return this.$store.state.isMobile
+    }
+  },
   methods: {
-    handleSubmit () {
-      this.$refs.submit.click()
+    async handleValidation () {
+      await this.$refs.submit.click()
+      this.$store.commit('IS_READY_PUSH', this.$refs.form.checkValidity())
     },
-    checkAvailability () {
-      this.$store.dispatch('checkConfiguration', this.req)
+    checkAvailability (e) {
+      if (e.currentTarget.checkValidity() && this.isMobile) {
+        this.$store.dispatch('checkConfiguration', this.req)
+      }
     }
   }
 }

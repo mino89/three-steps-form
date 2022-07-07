@@ -5,13 +5,13 @@ A simple three steps form in Vue
 ```
 yarn install
 ```
-### Compiles and minifies for production
-```
-yarn build
-```
 ### Compiles, hot-reloads app and server mock for development
 ```
 yarn dev
+```
+### Compiles and minifies for production
+```
+yarn build
 ```
 ### Serve builded package and run server mock
 ```

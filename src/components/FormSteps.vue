@@ -21,6 +21,7 @@
           <AddressSelection
             :request="addressData"
             ref="addressSelection"
+            @final-step='submitData'
             v-show="count == 2 || !isMobile"
           />
           <div class="buttons-container">
@@ -82,13 +83,38 @@ export default {
     window.removeEventListener('resize', debounce(this.switchMobileMode, 500))
   },
   methods: {
-    // submit methods of child components are triggered in desktop mode
-    submitMultiple () {
-      this.$refs.addressSelection.handleSubmit()
-      this.$refs.userData.handleSubmit()
-      this.$refs.selectConf.handleSubmit()
+    // in case of isMobile = false check all data in different endpoints
+    async checkDataBulk () {
+      await Promise.all([
+        this.$store.dispatch('checkConfiguration', this.configuration),
+        this.$store.dispatch('checkUserData', this.userData),
+        this.$store.dispatch('checkAddressData', this.addressData)
+      ])
     },
-    // send to store currendt mode setting
+    // in case of isMobile = false submit methods of child components are triggered
+    async submitMultiple () {
+      await Promise.all(
+        [
+          this.$refs.addressSelection.handleValidation(),
+          this.$refs.userData.handleValidation(),
+          this.$refs.selectConf.handleValidation()
+        ]
+      )
+      this.$store.dispatch('checkReadyState').then(
+        (res) => {
+          if (res === true) this.checkDataBulk().then(() => this.submitData())
+        }
+      )
+    },
+    // sumbit form at final step
+    submitData () {
+      this.$store.dispatch('submitData', {
+        configuration: this.configuration,
+        user: this.userData,
+        address: this.addressData
+      })
+    },
+    // send to store current mode setting
     switchMobileMode () {
       this.$store.commit('SWITCH_MOBILE', window.innerWidth < 768)
       // if the window is resized it resets the order of elements to first
@@ -106,18 +132,6 @@ export default {
     '$store.state.message': {
       handler: function (message) {
         if (message) toaster.show(message)
-      }
-    },
-    // in last step we will send all data to backend
-    '$store.state.count': {
-      handler: function (count) {
-        if (count > 2) {
-          this.$store.dispatch('submitData', {
-            configuration: this.configuration,
-            user: this.userData,
-            address: this.addressData
-          })
-        }
       }
     }
   }

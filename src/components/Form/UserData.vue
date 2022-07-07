@@ -18,10 +18,10 @@
       />
     </fieldset>
     <div class="buttons-container">
-      <button v-show="$store.state.isMobile" @click="$store.commit('CHANGE_COUNT',0)" >
+      <button v-show="isMobile" @click="$store.commit('CHANGE_COUNT',0)" >
         Precedente
       </button>
-      <button v-show="$store.state.isMobile" type="submit" ref="submit">Successivo</button>
+      <button v-show="isMobile" type="submit" ref="submit">Successivo</button>
     </div>
   </form>
 </template>
@@ -37,13 +37,20 @@ export default {
       req: this.request
     }
   },
-  mounted () {},
+  computed: {
+    isMobile () {
+      return this.$store.state.isMobile
+    }
+  },
   methods: {
-    handleSubmit () {
-      this.$refs.submit.click()
+    async handleValidation () {
+      await this.$refs.submit.click()
+      this.$store.commit('IS_READY_PUSH', this.$refs.form.checkValidity())
     },
-    checkUser () {
-      this.$store.dispatch('checkUserData', this.req)
+    checkUser (e) {
+      if (e.currentTarget.checkValidity() && this.isMobile) {
+        this.$store.dispatch('checkUserData', this.req)
+      }
     }
   }
 }
