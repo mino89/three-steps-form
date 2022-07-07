@@ -6,6 +6,7 @@ A simple three steps form in Vue
 yarn install
 ```
 ### Compiles, hot-reloads app and server mock for development
+it serve the project on `localhost:3000` by default
 ```
 yarn dev
 ```
@@ -14,6 +15,8 @@ yarn dev
 yarn build
 ```
 ### Serve builded package and run server mock
+Remember to build before run this command.
+it serve the project on `localhost:8080` by default
 ```
 yarn serve
 ```
@@ -27,7 +30,11 @@ yarn lint
 ```
 ## Valid Values
 
-Available Options
+I have create a server mock in `server.js` here i will simulate the behavior of an 
+hypothetical backend service.
+### Available Options
+the only available options: request params don't match returns error
+
 ```
 {
   size: ['M', 'L', 'XXL'],
@@ -35,7 +42,9 @@ Available Options
   emote: ['cactus', 'pine', 'palm']
 }
 ```
-Users
+### Users
+if request param matches one of these returns error
+
 ```
 [
   {
@@ -48,7 +57,9 @@ Users
   }
 ]
 ```
-Addresses
+### Addresses
+if request param matches one of these returns error
+
 ```
 [
   'existing street 122',
